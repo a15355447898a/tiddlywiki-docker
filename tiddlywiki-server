@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+readonly WIKIFOLDER=$1
+
+docker run --detach --rm \
+	--name tiddlywiki \
+	--publish 0.0.0.0:8080:8080 \
+	--mount "type=bind,source=${PWD},target=/tiddlywiki" \
+	--user "$(id -u):$(id -g)" \
+	a15355447898a/tiddlywiki:latest \
+	"$WIKIFOLDER" \
+	--listen admin=root host=0.0.0.0 password=root port=8080 username=root

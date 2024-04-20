@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+docker run --interactive --tty --rm \
+	--publish 0.0.0.0:8080:8080 \
+	--mount "type=bind,source=${PWD},target=/tiddlywiki" \
+	--user "$(id -u):$(id -g)" \
+	a15355447898a/tiddlywiki:latest \
+	"$@"
